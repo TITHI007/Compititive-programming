@@ -1,0 +1,69 @@
+/*Petrol pump problem
+auther:-Tithi Patel
+*/
+#include <iostream>
+#include<math.h>
+
+
+using namespace std;
+int MinRec(int arr[], int i, int sumCalculated, int sumTotal) 
+{ 
+    if (i==0) 
+        {
+	    
+            return abs((sumTotal-sumCalculated) - sumCalculated);
+        }
+   
+    return min(MinRec(arr, i-1, sumCalculated+arr[i-1], sumTotal), 
+               MinRec(arr, i-1, sumCalculated, sumTotal));
+
+} 
+int findMin(int arr[], int n) 
+{ 
+
+    int sumTotal = 0;
+    int dif,b[1001];
+    for (int i=0; i<n; i++) 
+        sumTotal += arr[i]; 
+    
+   
+    dif = MinRec(arr,n,0,sumTotal);
+    for(int i=0;i<sumTotal;i++)
+    {
+        b[i]=sumTotal-i;
+    }
+    for(int i=(sumTotal-1);i>=0;i--)
+    {
+        for(int j=0;j<i;j++)
+        {
+            if((abs(b[i]-b[i-j])==dif)&&(b[i]+b[i-j]==sumTotal))
+            {
+                if(b[i]>b[i-j])
+                {return b[i];
+                    break;
+                }
+                else
+                {return b[i-j];
+                    break;
+                }
+            }
+        }
+    }
+} 
+
+
+int main()
+{
+    int a[50];
+    int count=0;
+    for(int i=0;i<50;i++)
+    {
+        std::cin>>a[i];
+        if(a[i]==-1)
+        break;
+        count++;
+    }
+    
+    cout<<findMin(a,count);
+    
+}
