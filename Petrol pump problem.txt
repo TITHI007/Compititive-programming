@@ -8,7 +8,7 @@ First line will provide the quantity of petrol (separated by space) that can be 
 Shortest possible time to fill petrol in all the vehicles.
 
 
-auther:-Tithi Patel
+author:-Tithi Patel
 */
 #include <iostream>
 #include<math.h>
